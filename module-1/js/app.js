@@ -7,7 +7,7 @@ TooMuchFoodController.$inject = ["$scope", "$filter"];
 function TooMuchFoodController ($scope, $filter) {
     $scope.lunchItems = "";
     $scope.message = "";
-    
+
     $scope.checkAppetite = function () {
         var count = 0;
         var items = $scope.lunchItems.split(",");
@@ -24,6 +24,8 @@ function TooMuchFoodController ($scope, $filter) {
         } else {
             $scope.message = "Too much!";
         }
+
+        $scope.lunchItems = "";
     }
     
     
