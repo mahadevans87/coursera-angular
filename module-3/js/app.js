@@ -71,7 +71,7 @@ function MenuSearchService($http, $q) {
       var allItems = response.data.menu_items;
       
       result.items = allItems.filter(function (item) {
-        return (item.description.indexOf(searchTerm) !== -1);
+        return (item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
       });
 
       deferred.resolve(result);
