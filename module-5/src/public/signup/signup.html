@@ -1,0 +1,72 @@
+<div class="container">
+    <fieldset class="text-center">
+      <legend>Signup for our newsletter!</legend>
+      <form name='regForm' novalidate>
+
+        <input type="text" name="firstName" placeholder="Enter your First name"
+          ng-model="signupCtrl.userPrefs.firstName"
+          required
+          minlength="2"
+          ng-maxlength="15">
+          <p
+            ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required) && regForm.firstName.$touched">
+            firstName must be at least 2 characters long
+          </p>
+          <p ng-if="regForm.firstName.$error.maxlength && regForm.firstName.$touched">
+            firstName must not be longer than 15 characters
+          </p>
+          <br>
+
+        <input type="text" name="lastName" placeholder="Enter your Last name"
+          ng-model="signupCtrl.userPrefs.lastName"
+          required
+          minlength="2"
+          ng-maxlength="15">
+          <p
+            ng-if="(regForm.lastName.$error.minlength || regForm.lastName.$error.required) && regForm.lastName.$touched">
+            lastName must be at least 2 characters long
+          </p>
+          <p ng-if="regForm.lastName.$error.maxlength && regForm.lastName.$touched">
+            lastName must not be longer than 15 characters
+          </p>
+          <br>
+
+
+        <input type="email" name="email" placeholder="Email"
+          ng-model="signupCtrl.userPrefs.email"
+          required>
+          <p ng-if="regForm.email.$invalid && regForm.email.$touched">
+            Must be a valid email address: handle@domain format
+          </p>
+          <br>
+
+        <input type="text" name="phone" placeholder="Phone ###-###-####"
+          ng-model="signupCtrl.userPrefs.phone"
+          required
+          pattern="(\d{3})-(\d{3})-(\d{4})">
+          <p ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </p>
+          <br>
+
+        <input type="text" name="favDishId" placeholder="Favourite Dish Menu Number"
+          ng-model="signupCtrl.userPrefs.favDishId"
+          required>
+          <p ng-if="signupCtrl.isMenuItemValid && regForm.favDishId.$invalid && regForm.favDishId.$touched">
+            Please enter your favourite Menu Item Number
+          </p>
+          <p ng-if="!signupCtrl.isMenuItemValid">
+            No such Menu Number exists! Please try again.
+          </p>
+          <br>
+
+        <button class="btn btn-primary"
+          ng-disabled="regForm.$invalid"
+          ng-click="signupCtrl.submit()">Submit</button>
+
+      </form>
+    </fieldset>
+    <div>
+      <h2 ng-if="signupCtrl.success" class="text-center">Your information has been saved</h2>
+    </div>
+</div>
